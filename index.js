@@ -17,13 +17,20 @@ app.set('views',path.join(__dirname,'views'));
 
 
 
-//testando as rotas
+// rotas de busca
 app.get('/',(req,res)=>{
-    res.send('Funcionando')
-});
+console.log(req.query);
 
+if(req.query.busca == null){
+    res.send('Home');
+}else{
+    res.send('voce buscou:'+req.query.busca)
+}
+})
 
-
+app.get('/:slug',(req,res)=>{
+    res.send(req.params.slug);
+})
 
 app.listen(5000,()=>{
     console.log(('Servidor Rodando!'));

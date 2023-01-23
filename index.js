@@ -9,20 +9,19 @@ app.use(bodyParser.urlencoded({
     extended:true
 }));
 
-// rotyas express com ejs
+//rotas express com ejs
 app.engine('html',require('ejs').renderFile);
 app.set('view engine','html');
-app.use('/puplic',express.static(path.join(__dirname,'puplic')));
-app.set('views',path.join(__dirname,'views'));
+app.use('/public',express.static(path.join(__dirname,'public')));
+app.set('views',path.join(__dirname,'pages'));
 
 
 
 // rotas de busca
 app.get('/',(req,res)=>{
-console.log(req.query);
 
 if(req.query.busca == null){
-    res.send('Home');
+    res.render('Home',{});
 }else{
     res.send('voce buscou:'+req.query.busca)
 }

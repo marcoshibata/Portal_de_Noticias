@@ -8,6 +8,7 @@
 header{
     padding: 8px 0;
     background-color: #0aacdc;
+    text-align: center;
 }
 
 .center{
@@ -15,7 +16,7 @@ header{
     margin: 0 auto;
     padding: 0 2%;
     display: flex;
-    flex-wrap: nowrap;
+    flex-wrap: wrap;
 }
 
 .logo{
@@ -137,6 +138,7 @@ header{
     width: 60%;
     padding: 0 10px;
     display: flex;
+    flex-wrap: wrap;
  }
 
  .box-ultimas-single{
@@ -145,7 +147,6 @@ header{
    margin-right: 2%;
    background-color: white;
    padding-bottom: 20px;
-   height: 100%;
    border-radius: 10px;
  }
 
@@ -209,6 +210,7 @@ header{
    padding: 20px;
    display: flex;
    text-align: left;
+   flex-wrap: wrap;
 
  }
 
@@ -248,3 +250,25 @@ header{
    font-size: 10px;
  }
 
+@media screen and ( max-width: 768px){
+   .logo .form-busca{width:100%}
+   .form-busca{
+      text-align: center;
+   }
+
+   .titulo-destaque-descricao h2{
+      font-size: 34px;
+      margin: 20px 0;
+   }
+
+   .mais-lidas, .ultimas{
+      width: 100%;
+      margin-bottom: 20px;
+   }
+   .box-ultimas-single{
+      width: 100%;
+      margin-right: 0;
+      margin-bottom: 20px;
+   }
+}
+   

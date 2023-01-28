@@ -1,8 +1,17 @@
 const express = require('express');
+const mongoose = require('mongoose');
 var bodyParser = require('body-parser');
 const path = require('path');
 
 const app = express();
+
+const Posts = require('./Posts.js');
+
+mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true}).then(function(){
+    console.log('Conectado com Sucesso');
+}).catch(function(err){
+    console.log(err.message);
+})
 
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({

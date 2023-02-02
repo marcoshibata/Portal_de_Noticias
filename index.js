@@ -31,10 +31,21 @@ app.get('/',(req,res)=>{
 
     if(req.query.busca == null){
         Posts.find({}).sort({'_id': -1}).exec(function(err,posts){
-            console.log(posts[0]);
+            //console.log(posts[0]);
+            posts = posts.map(function(val){
+                return{
+                    titulo: val.titulo,
+                    conteudo: val.conteudo,
+                    descricaoCurta: val.conteudo.substr(0,100),
+                    imagem: val.imagem,
+                    slug: val.slug,
+                    categoria: val.categoria
+                }
+            })
+            res.render('home',{posts:posts});
             })
         
-        res.render('home',{});
+        
     }else{
         res.render('busca',{});
     }

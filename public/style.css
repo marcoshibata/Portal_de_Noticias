@@ -105,6 +105,11 @@ header{
     z-index: 2;
  }
 
+ .titulo-destaque-descricao a{
+   text-decoration: none;
+   color: white;
+ }
+
  .titulo-destaque-descricao h2{
    font-size: 54Px;
    margin: 20px 0;

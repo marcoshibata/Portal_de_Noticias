@@ -7,7 +7,7 @@ const app = express();
 
 const Posts = require('./Posts.js');
 
-mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.net/?retryWrites=true&w=majority',{useNewUrlParser:true,useUnifiedTopology:true}).then(function(){
+mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.net/shibanews?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology:true}).then(function(){
     console.log('Conectado com Sucesso');
 }).catch(function(err){
     console.log(err.message);
@@ -29,12 +29,16 @@ app.set('views',path.join(__dirname,'pages'));
 // rotas de busca
 app.get('/',(req,res)=>{
 
-if(req.query.busca == null){
-    res.render('Home',{});
-}else{
-    res.render('busca',{});
-}
-})
+    if(req.query.busca == null){
+        Posts.find({}).sort({'_id': -1}).exec(function(err,posts){
+            console.log(posts[0]);
+            })
+        
+        res.render('home',{});
+    }else{
+        res.render('busca',{});
+    }
+});
 
 app.get('/:slug',(req,res)=>{
     //res.send(req.params.slug);

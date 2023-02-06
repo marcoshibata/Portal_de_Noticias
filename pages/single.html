@@ -14,30 +14,16 @@
         <div class="mais-lidas">
             <h3>Mais lidas</h3>
             <div class="mais-lidas-noticias">
-                <div class="mais-lidas-noticias-single">
-                    <img src="/public/images/arvores.png" alt="">
-                    <div class="texto-mais-lida-single">
-                        <h4>Natureza</h4>
-                        <p>Com idade avançada, leão do Parque Dois Irmãos é diagnosticado com câncer e recebe tratamento. Espécie está ameaçada de extinção</p>
-                        <a href="/encarar-o-surf">Saiba mais</a>
+                <% for(let i = 0; i < postsTop.length; i ++){%>
+                    <div class="mais-lidas-noticias-single">
+                        <img src="<%= postsTop[i].imagem %>" alt="">
+                        <div class="texto-mais-lida-single">
+                            <h4><%= postsTop[i].titulo%></h4>
+                            <p><%- postsTop[i].descricaoCurta %>... - <span style="font-size: 12px;font-weight:bold;">(<%= postsTop[i].views%> views)</span></p>
+                            <a href="<%= postsTop[i].slug %>">Saiba mais</a>
+                        </div>
                     </div>
-                </div>
-                <div class="mais-lidas-noticias-single">
-                    <img src="/public/images/deserto.png" alt="">
-                    <div class="texto-mais-lida-single">
-                        <h4>Natureza</h4>
-                        <p>Com idade avançada, leão do Parque Dois Irmãos é diagnosticado com câncer e recebe tratamento. Espécie está ameaçada de extinção</p>
-                        <a href="/encarar-o-surf">Saiba mais</a>
-                    </div>
-                </div>
-                <div class="mais-lidas-noticias-single">
-                    <img src="/public/images/estetoscopio.png" alt="">
-                    <div class="texto-mais-lida-single">
-                        <h4>Natureza</h4>
-                        <p>Com idade avançada, leão do Parque Dois Irmãos é diagnosticado com câncer e recebe tratamento. Espécie está ameaçada de extinção</p>
-                        <a href="/encarar-o-surf">Saiba mais</a>
-                    </div>
-                </div>
+               <% }%>
                 
             </div>
 

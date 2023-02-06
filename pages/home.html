@@ -6,7 +6,7 @@
                 <div class="img-destaque">
                     <div class="overlay-destaque"></div>
                     <div class="titulo-destaque-descricao">
-                        <a href="<%=posts[0].slug %>>"><h2><%= posts[0].titulo%></h2></a>
+                        <a href="<%=posts[0].slug %>"><h2><%= posts[0].titulo%></h2></a>
                         <p><%- posts[0].descricaoCurta %>...</p>
                     </div>
                     <img src="<%= posts[0].imagem %>" alt="">
@@ -36,13 +36,13 @@
                 <div class="mais-lidas">
                     <h3>Mais lidas</h3>
                     <div class="mais-lidas-noticias">
-                        <% for(let i = 0; i < posts.length; i ++){%>
+                        <% for(let i = 0; i < postsTop.length; i ++){%>
                             <div class="mais-lidas-noticias-single">
-                                <img src="<%= posts[i].imagem %>" alt="">
+                                <img src="<%= postsTop[i].imagem %>" alt="">
                                 <div class="texto-mais-lida-single">
-                                    <h4><%= posts[i].titulo%></h4>
-                                    <p><%- posts[i].descricaoCurta %>...</p>
-                                    <a href="<%= posts[i].slug %>">Saiba mais</a>
+                                    <h4><%= postsTop[i].titulo%></h4>
+                                    <p><%- postsTop[i].descricaoCurta %>... - <span style="font-size: 12px;font-weight:bold;">(<%= postsTop[i].views%> views)</span></p>
+                                    <a href="<%= postsTop[i].slug %>">Saiba mais</a>
                                 </div>
                             </div>
                        <% }%>

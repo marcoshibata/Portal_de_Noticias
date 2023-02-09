@@ -7,6 +7,8 @@ const app = express();
 
 const Posts = require('./Posts.js');
 
+var session = require('express-session');
+
 mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.net/shibanews?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology:true}).then(function(){
     console.log('Conectado com Sucesso');
 }).catch(function(err){
@@ -17,6 +19,9 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended:true
 }));
+
+// usando express-session para criar sessoes
+app.use(session({ secret: 'keyboard cat', cookie: { maxAge: 60000 }}));
 
 //rotas express com ejs
 app.engine('html',require('ejs').renderFile);
@@ -107,6 +112,17 @@ app.get('/:slug',(req,res)=>{
             res.redirect('/');
         }     
     })
+    
+})
+
+//rota para sessao administrador
+app.get('/admin/login',(req,res)=>{
+    if(req.session.login == null){
+        req.session.login = "Marco";
+        res.send("Sua seção foi criada");
+    }else{
+        res.send(req.session.login)
+    }
     
 })
 

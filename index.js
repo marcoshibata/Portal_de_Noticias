@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const fileupload =require('express-fileupload');
 var bodyParser = require('body-parser');
+const fs = require('fs');
 const path = require('path');
 
 const app = express();
@@ -8,6 +10,7 @@ const app = express();
 const Posts = require('./Posts.js');
 
 var session = require('express-session');
+const fileUpload = require('express-fileupload');
 
 mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.net/shibanews?retryWrites=true&w=majority',{useNewUrlParser:true, useUnifiedTopology:true}).then(function(){
     console.log('Conectado com Sucesso');
@@ -18,6 +21,11 @@ mongoose.connect('mongodb+srv://root:rxxxfPx7idwITego@cluster0.qwx8mlc.mongodb.n
 app.use(bodyParser.json()); 
 app.use(bodyParser.urlencoded({
     extended:true
+}));
+
+app.use(fileUpload({
+    useTempFiles:true,
+    tempFileDir:path.join(__dirname,'temp')
 }));
 
 // usando express-session para criar sessoes
@@ -136,10 +144,20 @@ app.post('/admin/login',(req,res)=>{
 
 //rota para postar noticia
 app.post('/admin/cadastro',(req,res)=>{
-    console.log(req.body)
+    
+    let formato = req.files.arquivo.name.split('.');
+    var imagem = "";
+    if(formato[formato.length - 1]== "png"){
+        imagem = new Date().getTime()+'.png';
+        req.files.arquivo.mv(__dirname+'/public/images/'+imagem);
+    }else{
+        //deleta a imagem caso nao corresponda as expectativas
+        fs.unlinkSync(req.files.arquivo.tempFilePath);
+    }
+
     Posts.create({
         titulo: req.body.titulo_noticia,
-        imagem:req.body.url_imagem,
+        imagem:'http://localhost:5000/public/images/'+imagem,
         categoria:"Nenhuma",
         conteudo:req.body.noticia,
         slug:req.body.slug,

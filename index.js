@@ -115,13 +115,32 @@ app.get('/:slug',(req,res)=>{
     
 })
 
+//usuarios dentro de array
+var usuarios = [
+    {
+        login: 'Marco',
+        senha: '123456'
+    }
+]
+
+//comparando a senha 
+app.post('/admin/login',(req,res)=>{
+    usuarios.map(function(val){
+        if(val.login == req.body.login && val.senha == req.body.senha){
+            req.session.login = "Shibatex";
+            
+        }
+    })
+    res.redirect('/admin/login')
+})
+
+
 //rota para sessao administrador
 app.get('/admin/login',(req,res)=>{
     if(req.session.login == null){
-        req.session.login = "Marco";
-        res.send("Sua seção foi criada");
+        res.render('admin-login',);
     }else{
-        res.send(req.session.login)
+        res.render('admin-panel');
     }
     
 })

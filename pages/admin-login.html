@@ -6,11 +6,71 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Faça o Login</title>
 </head>
+<style>
+    body{
+        margin: 0px;
+    }
+    .conteiner{
+        width: 100vw;
+        height: 100vh;
+        padding: 10px;
+        display: flex;
+        background-color: #cacfd4;
+        flex-direction: row;
+        justify-content: center;
+        align-items: center;
+    }
+    .caixa-login{
+        width: 300px;
+        height: 300px;
+        padding: 10px;
+        background-color: #fff;
+        align-items: baseline;        
+        display: block;
+        text-align: center;
+    }
+    form input{
+        width: 290px;
+        height: 30px;
+        margin: 5px 0;
+    }
+
+    .login-escrita{
+        align-items: center;
+        padding: 10px;
+        height: 50px;
+        background-color: #0aacdc;
+        margin-bottom: 30px;
+        color: white;
+    }
+    .login-escrita p{
+        font-size: 18px;
+
+    }
+    form input{
+        text-align: center;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+    }
+    form input[type=submit]{
+        height: 40px;
+        background-color: green;
+        color: white;
+        margin-top: 30px;
+        cursor: pointer;
+    }
+        
+</style>
 <body>
-    <form method="post">
-        <input type="text" name="login">
-        <input type="password" name="senha">
-        <input type="submit" name="acao" value="Logar!">
-    </form>
+    <div class="conteiner">
+        <div class="caixa-login">
+            <div class="login-escrita"><p>LOGIN</p></div>
+            <form method="post">
+                <input type="text" name="login">
+                <input type="password" name="senha">
+                <input type="submit" name="acao" value="Entrar">
+            </form>
+        </div>
+    </div>
 </body>
 </html>

@@ -158,10 +158,10 @@ app.post('/admin/cadastro',(req,res)=>{
     Posts.create({
         titulo: req.body.titulo_noticia,
         imagem:'http://localhost:5000/public/images/'+imagem,
-        categoria:"Nenhuma",
+        categoria:req.body.categoria,
         conteudo:req.body.noticia,
         slug:req.body.slug,
-        autor: "Admin",
+        autor: req.body.autor,
         views: 0
     })
     res.redirect('/admin/login');
